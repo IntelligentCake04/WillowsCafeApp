@@ -1,9 +1,8 @@
 import * as React from "react";
-import { Button, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./src/Screens/HomeScreen";
-import AnotherScreen from "./src/Screens/AnotherScreen";
+import LoyaltyCardScreen from "./src/Screens/LoyaltyCardScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -12,7 +11,7 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="AnotherScreen" component={AnotherScreen} />
+        <Drawer.Screen name="LoyaltyCard" component={LoyaltyCardScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
