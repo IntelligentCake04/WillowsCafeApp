@@ -1,12 +1,9 @@
 import React from "react";
 import { View, Text } from "react-native";
+import LoginComponent from "../Components/LoginComponent";
 
-const HomeScreen = ({ navigation }) => {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>This is the HomeScreen!</Text>
-    </View>
-  );
+const HomeScreen = () => {
+  return <LoginComponent />;
 };
 
 export default HomeScreen;

@@ -5,10 +5,11 @@ import {
   View,
   TouchableOpacity,
   FlatList,
-  Button,
+  SafeAreaView,
 } from "react-native";
+import GlobalStyles from "../Styles/GlobalStyles";
 
-const LoyaltyCardScreen = ({ navigation }) => {
+const LoyaltyCardScreen = () => {
   const [drink, setDrink] = useState([
     { name: "drink 1", id: "1" },
     { name: "drink 2", id: "2" },
@@ -31,35 +32,37 @@ const LoyaltyCardScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.loyaltytext}>
-      <FlatList
-        numColumns={3}
-        keyExtractor={(item) => item.id}
-        data={drink}
-        renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => pressHandler(item.id)}>
-            <Text style={styles.item}>{item.name}</Text>
-          </TouchableOpacity>
-        )}
-      />
-      <Button onPress={() => navigation.toggleDrawer()} title="Toggle Drawer" />
-    </View>
+    <SafeAreaView style={GlobalStyles.droidSafeArea}>
+      <View style={styles.loyaltytext}>
+        <FlatList
+          numColumns={3}
+          keyExtractor={(item) => item.id}
+          data={drink}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => pressHandler(item.id)}>
+              <Text style={styles.item}>{item.name}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   loyaltytext: {
-    textAlign: "center",
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "bold",
+    flex: 1,
+    paddingTop: 40,
+    paddingHorizontal: 24,
+    backgroundColor: "grey",
   },
   item: {
-    height: 80,
-    width: 80,
-    padding: 20,
-    alignItems: "center",
+    flex: 1,
+    marginHorizontal: 18,
+    marginTop: 3,
+    padding: 30,
     backgroundColor: "darkorange",
+    fontSize: 20,
   },
 });
 
