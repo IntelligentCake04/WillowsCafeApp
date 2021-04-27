@@ -7,7 +7,6 @@ import {
   FlatList,
   SafeAreaView,
 } from "react-native";
-import GlobalStyles from "../Styles/GlobalStyles";
 
 const LoyaltyCardScreen = () => {
   const [drink, setDrink] = useState([
