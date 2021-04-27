@@ -32,20 +32,18 @@ const LoyaltyCardScreen = () => {
   };
 
   return (
-    <SafeAreaView style={GlobalStyles.droidSafeArea}>
-      <View style={styles.loyaltytext}>
-        <FlatList
-          numColumns={3}
-          keyExtractor={(item) => item.id}
-          data={drink}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => pressHandler(item.id)}>
-              <Text style={styles.item}>{item.name}</Text>
-            </TouchableOpacity>
-          )}
-        />
-      </View>
-    </SafeAreaView>
+    <View style={styles.loyaltytext}>
+      <FlatList
+        numColumns={3}
+        keyExtractor={(item) => item.id}
+        data={drink}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => pressHandler(item.id)}>
+            <Text style={styles.item}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
+      />
+    </View>
   );
 };
 
@@ -54,14 +52,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     paddingHorizontal: 24,
-    backgroundColor: "grey",
+    backgroundColor: "#212322",
   },
   item: {
     flex: 1,
     marginHorizontal: 18,
     marginTop: 3,
     padding: 30,
-    backgroundColor: "darkorange",
+    backgroundColor: "#CC5500",
     fontSize: 20,
   },
 });
