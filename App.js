@@ -5,6 +5,8 @@ import LoginScreen from "./src/Screens/LoginScreen";
 import LoyaltyCardScreen from "./src/Screens/LoyaltyCardScreen";
 import SettingsScreen from "./src/Screens/SettingsScreen";
 import { Button } from "react-native";
+import { Ionicons } from "react-native-vector-icons";
+import SignupScreen from "./src/Screens/SignupScreen";
 
 const Stack = createStackNavigator();
 
@@ -17,6 +19,7 @@ const App = () => {
           component={LoginScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen name="SignupScreen" component={SignupScreen} options={} />
         <Stack.Screen
           name="LoyaltyCardScreen"
           component={LoyaltyCardScreen}
@@ -31,11 +34,12 @@ const App = () => {
               fontWeight: "bold",
             },
             headerRight: () => (
-              <Button
-                title="Settings"
-                icon
+              <Ionicons
+                name="settings"
+                size={30}
+                color="#212322"
                 onPress={() => navigation.navigate("SettingsScreen")}
-              ></Button>
+              />
             ),
           })}
         />

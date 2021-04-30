@@ -1,19 +1,36 @@
 import React from "react";
 import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
   Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
   TextInput,
-  Image,
+  Alert,
 } from "react-native";
 
-const HomeScreen = ({ navigation }) => {
+const ShowAlert = (navigation) => {
+  Alert.alert(
+    "Successfully Signed Up!",
+    "Return to the login screen to begin using the app!",
+    [
+      {
+        text: "Ok",
+        onPress: () => ReturnToLoginScreen(navigation),
+      },
+    ],
+    {
+      cancelable: true,
+      onDismiss: () => ReturnToLoginScreen(navigation),
+    }
+  );
+};
+
+const ReturnToLoginScreen = (navigation) => navigation.replace("LoginScreen");
+
+const SignupScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image style={styles.logo} source={require("../images/logo.png")} />
-      </View>
+      <Text style={styles.logo}>Signup</Text>
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
@@ -22,32 +39,13 @@ const HomeScreen = ({ navigation }) => {
           onChangeText={(val) => this.setState({ email: val })}
         />
       </View>
-      <View style={styles.inputView}>
-        <TextInput
-          secureTextEntry
-          style={styles.inputText}
-          placeholder="Code..."
-          placeholderTextColor="white"
-          onChangeText={(val) => this.setState({ password: val })}
-        />
-      </View>
-      <TouchableOpacity>
-        <Text style={styles.forgot}>Forgot Password?</Text>
-      </TouchableOpacity>
       <TouchableOpacity
         style={styles.loginBtn}
         onPress={() => {
-          navigation.replace("LoyaltyCardScreen");
+          ShowAlert(navigation);
         }}
       >
-        <Text style={styles.loginText}>LOGIN</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.replace("SignupScreen");
-        }}
-      >
-        <Text style={styles.loginText}>Signup</Text>
+        <Text style={styles.loginText}>SIGNUP</Text>
       </TouchableOpacity>
     </View>
   );
@@ -60,14 +58,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  logoContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingBottom: 20,
-  },
   logo: {
-    width: 250,
-    height: 250,
+    fontWeight: "bold",
+    fontSize: 50,
+    color: "#CC5500",
+    marginBottom: 40,
+    marginHorizontal: 20,
   },
   inputView: {
     width: "80%",
@@ -101,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default SignupScreen;
