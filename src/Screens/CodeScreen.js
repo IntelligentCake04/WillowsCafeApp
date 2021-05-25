@@ -8,28 +8,8 @@ import {
   Image,
 } from "react-native";
 
-// const SendEmail = async (email) => {
-//   try {
-//     let response = await fetch("url", {
-//       method: "POST",
-//       headers: {
-//         Accept: "application/json",
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         email: email,
-//       }),
-//     });
-//     let json = await response.json();
-//     console.log("Response " + json);
-//     return json.code;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-const HomeScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+const CodeScreen = ({ route, navigation }) => {
+  const [codeInput, setcodeInput] = useState("");
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -38,19 +18,23 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
-          placeholder="Email..."
+          placeholder="Code..."
           placeholderTextColor="white"
-          onChangeText={(val) => setEmail(val)}
+          onChangeText={(val) => setcodeInput(val)}
         />
       </View>
       <TouchableOpacity
         style={styles.loginBtn}
         onPress={() => {
-          // let code = SendEmail(email);
-          navigation.replace("CodeScreen");
+          // if (codeInput == route.params.code) {
+          //   navigation.replace("LoyaltyCardScreen");
+          // } else {
+          //   Alert.alert("Invalid Code", "Invalid code");
+          // }
+          navigation.replace("LoyaltyCardScreen");
         }}
       >
-        <Text style={styles.loginText}>SUBMIT</Text>
+        <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
     </View>
   );
@@ -104,4 +88,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default CodeScreen;
