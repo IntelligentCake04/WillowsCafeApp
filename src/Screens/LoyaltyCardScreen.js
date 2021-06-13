@@ -1,12 +1,11 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
+import QRScreen from "../Screens/QRScreen";
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
   FlatList,
-  Alert,
 } from "react-native";
 
 export default function LoyaltyCardScreen({ navigation }) {
@@ -27,14 +26,20 @@ export default function LoyaltyCardScreen({ navigation }) {
   const pressHandler = (id) => {
     console.log(id);
     setDrink((prevDrink) => {
-      navigation.navigate("QRScreen", { name: "QR Screen" });
       return prevDrink.filter((drink) => drink.id != id);
     });
   };
 
   return (
     <View style={styles.loyaltytext}>
-      <Text style={styles.text}>Willows Loyalty Card</Text>
+      <View style={styles.SquareShapeView2}>
+        <QRScreen />
+      </View>
+
+      <View style={styles.textsquareview}>
+        <Text style={styles.text}>Willows Loyalty Card</Text>
+      </View>
+
       <View style={styles.SquareShapeView}>
         <FlatList
           numColumns={3}
@@ -54,24 +59,42 @@ export default function LoyaltyCardScreen({ navigation }) {
 const styles = StyleSheet.create({
   loyaltytext: {
     flex: 1,
-    paddingTop: 100,
-    paddingHorizontal: 24,
+    paddingTop: 2,
+    paddingHorizontal: 30,
     backgroundColor: "#292929",
   },
-
+  textsquareview: {
+    width: 205,
+    height: 60,
+    position: "absolute",
+    backgroundColor: "#292929",
+    alignSelf: "flex-end",
+  },
   text: {
-    fontSize: 33,
+    fontSize: 21,
     fontWeight: "700",
     color: "#A14F0B",
   },
-
-  SquareShapeView: {
-    width: 320,
-    height: 400,
+  SquareShapeView2: {
+    width: 120,
+    height: 120,
+    padding: 0,
     backgroundColor: "#5A5959",
     borderColor: "#3B3B3B",
     borderWidth: 5,
     borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  SquareShapeView: {
+    width: 300,
+    height: 380,
+    backgroundColor: "#5A5959",
+    borderColor: "#3B3B3B",
+    borderWidth: 5,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
   },
   item: {
     flex: 1,
@@ -79,9 +102,21 @@ const styles = StyleSheet.create({
     marginTop: 3,
     padding: 30,
     backgroundColor: "#C46113",
-    fontSize: 20,
+    fontSize: 16,
+    fontWeight: "100",
     borderWidth: 3,
     borderColor: "#A14F0B",
+    borderRadius: 10,
+  },
+  itemnew: {
+    flex: 1,
+    marginHorizontal: 3,
+    marginTop: 3,
+    padding: 30,
+    backgroundColor: "#BB5D13",
+    fontSize: 16,
+    borderWidth: 3,
+    borderColor: "#994C0B",
     borderRadius: 10,
   },
 });
