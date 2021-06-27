@@ -35,11 +35,6 @@ export default function LoyaltyCardScreen({ navigation }) {
       <View style={styles.SquareShapeView2}>
         <QRScreen />
       </View>
-
-      <View style={styles.textsquareview}>
-        <Text style={styles.text}>Willows Loyalty Card</Text>
-      </View>
-
       <View style={styles.SquareShapeView}>
         <FlatList
           numColumns={3}
@@ -63,28 +58,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     backgroundColor: "#292929",
   },
-  textsquareview: {
-    width: 205,
-    height: 60,
-    position: "absolute",
-    backgroundColor: "#292929",
-    alignSelf: "flex-end",
-  },
   text: {
     fontSize: 21,
     fontWeight: "700",
     color: "#A14F0B",
   },
   SquareShapeView2: {
-    width: 120,
-    height: 120,
-    padding: 0,
+    width: 125,
+    height: 125,
     backgroundColor: "#5A5959",
     borderColor: "#3B3B3B",
     borderWidth: 5,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
+    alignSelf: "center",
   },
   SquareShapeView: {
     width: 300,
@@ -106,17 +94,6 @@ const styles = StyleSheet.create({
     fontWeight: "100",
     borderWidth: 3,
     borderColor: "#A14F0B",
-    borderRadius: 10,
-  },
-  itemnew: {
-    flex: 1,
-    marginHorizontal: 3,
-    marginTop: 3,
-    padding: 30,
-    backgroundColor: "#BB5D13",
-    fontSize: 16,
-    borderWidth: 3,
-    borderColor: "#994C0B",
     borderRadius: 10,
   },
 });

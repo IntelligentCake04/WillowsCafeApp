@@ -3,6 +3,8 @@ import { Text, View, Image } from "react-native";
 import GlobalStyles from "../Styles/GlobalStyles";
 import QRCode from "react-native-qrcode-svg";
 
-export default QRScreen = () => {
+const QRScreen = () => {
   return <QRCode value="Random String" />;
 };
+
+export default QRScreen;
