@@ -6,30 +6,33 @@ import {
   Text,
   TextInput,
   Image,
+  Alert,
 } from "react-native";
+import validator from "validator";
 
-// const SendEmail = async (email) => {
-//   try {
-//     let response = await fetch("url", {
-//       method: "POST",
-//       headers: {
-//         Accept: "application/json",
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         email: email,
-//       }),
-//     });
-//     let json = await response.json();
-//     console.log("Response " + json);
-//     return json.code;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+const SendPhoneNumber = async (phoneNumber) => {
+  try {
+    let response = await fetch("google.com", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        phoneNumber: phoneNumber,
+      }),
+    });
+    let json = await response.json();
+    console.log("Response " + json);
+    return json.code;
+  } catch (error) {
+    console.error(error);
+    return 400;
+  }
+};
 
 const HomeScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -37,17 +40,43 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <View style={styles.inputView}>
         <TextInput
+          keyboardType={"phone-pad"}
           style={styles.inputText}
-          placeholder="Email..."
+          placeholder="Phone Number..."
           placeholderTextColor="white"
-          onChangeText={(val) => setEmail(val)}
+          onChangeText={(val) => {
+            setPhoneNumber(val);
+          }}
         />
       </View>
       <TouchableOpacity
         style={styles.loginBtn}
         onPress={() => {
-          // let code = SendEmail(email);
-          navigation.replace("CodeScreen");
+          if (validator.isMobilePhone(phoneNumber)) {
+            if (SendPhoneNumber(phoneNumber) == 200) {
+              navigation.replace("CodeScreen", { phoneNumber: phoneNumber });
+            } else {
+              Alert.alert(
+                "Something went wrong",
+                "Something went wrong, please try again",
+                [
+                  {
+                    text: "OK",
+                  },
+                ]
+              );
+            }
+          } else {
+            Alert.alert(
+              "Invalid Phone Number",
+              "Your phone number is not valid, please try again",
+              [
+                {
+                  text: "OK",
+                },
+              ]
+            );
+          }
         }}
       >
         <Text style={styles.loginText}>SUBMIT</Text>

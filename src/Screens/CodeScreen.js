@@ -6,10 +6,33 @@ import {
   Text,
   TextInput,
   Image,
+  AsyncStorage,
 } from "react-native";
 
+const SendVerification = async (phoneNumber, code) => {
+  try {
+    let response = await fetch("google.com", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        phoneNumber: phoneNumber,
+        code: code,
+      }),
+    });
+    let json = await response.json();
+    console.log("Response " + json);
+    return json.code;
+  } catch (error) {
+    console.error(error);
+    return 400;
+  }
+};
+
 const CodeScreen = ({ route, navigation }) => {
-  const [codeInput, setcodeInput] = useState("");
+  const [codeInput, SetCodeInput] = useState("");
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -20,18 +43,27 @@ const CodeScreen = ({ route, navigation }) => {
           style={styles.inputText}
           placeholder="Code..."
           placeholderTextColor="white"
-          onChangeText={(val) => setcodeInput(val)}
+          onChangeText={(val) => SetCodeInput(val)}
         />
       </View>
       <TouchableOpacity
         style={styles.loginBtn}
         onPress={() => {
-          // if (codeInput == route.params.code) {
-          //   navigation.replace("LoyaltyCardScreen");
-          // } else {
-          //   Alert.alert("Invalid Code", "Invalid code");
-          // }
-          navigation.replace("LoyaltyCardScreen");
+          const { phoneNumber } = route.params;
+          if (SendVerification(phoneNumber, codeInput) == 200) {
+            navigation.replace("LoyaltyCardScreen");
+            AsyncStorage.setItem("isLoggedIn", true);
+          } else {
+            Alert.alert(
+              "Invalid Phone Number",
+              "Your phone number is not valid, please try again",
+              [
+                {
+                  text: "OK",
+                },
+              ]
+            );
+          }
         }}
       >
         <Text style={styles.loginText}>LOGIN</Text>

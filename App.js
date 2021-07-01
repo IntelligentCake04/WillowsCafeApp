@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "./src/Screens/LoginScreen";
@@ -15,6 +15,7 @@ import TermsAndConditionsScreen from "./src/Screens/SettingsScreens/TermsAndCond
 import QRScannerScreen from "./src/Screens/QRScannerScreen";
 import MenuScreen from "./src/Screens/MenuScreen";
 import QRScreen from "./src/Screens/QRScreen";
+import SplashScreen from "./src/Screens/SplashScreen";
 
 const Stack = createStackNavigator();
 
@@ -22,7 +23,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="LoginScreen"
+        initialRouteName="SplashScreen"
         screenOptions={{
           headerStyle: {
             backgroundColor: "#CC5500",
@@ -34,16 +35,6 @@ const App = () => {
           },
         }}
       >
-        <Stack.Screen
-          name="LoginScreen"
-          component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="CodeScreen"
-          component={CodeScreen}
-          options={{ headerShown: false }}
-        />
         <Stack.Screen
           name="LoyaltyCardScreen"
           component={LoyaltyCardScreen}
@@ -88,6 +79,21 @@ const App = () => {
         />
         <Stack.Screen name="QRScannerScreen" component={QRScannerScreen} />
         <Stack.Screen name="QRScreen" component={QRScreen} />
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CodeScreen"
+          component={CodeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
