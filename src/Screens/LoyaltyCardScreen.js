@@ -8,6 +8,30 @@ import {
   FlatList,
 } from "react-native";
 
+// TODO: get this working!
+// const GetPoints = async () => {
+//   try {
+//     let response = await fetch("google.com", {
+//       method: "GET",
+//       headers: {
+//         "Accept": "application/json",
+//         "Content-Type": "application/json",
+//         "X-Api-Token":
+//       },
+//       body: JSON.stringify({
+//         phoneNumber: phoneNumber,
+//         code: code,
+//       }),
+//     });
+//     let json = await response.json();
+//     console.log("Response " + json);
+//     return json.code;
+//   } catch (error) {
+//     console.error(error);
+//     return 400;
+//   }
+// };
+
 export default function LoyaltyCardScreen({ navigation }) {
   const [drink, setDrink] = useState([
     { name: "  1  ", id: "1" },
@@ -25,6 +49,7 @@ export default function LoyaltyCardScreen({ navigation }) {
 
   const pressHandler = (id) => {
     console.log(id);
+    SendRequest;
     setDrink((prevDrink) => {
       return prevDrink.filter((drink) => drink.id != id);
     });
