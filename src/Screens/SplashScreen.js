@@ -6,8 +6,8 @@ const SplashScreen = ({ navigation }) => {
     const _retrieveData = async () => {
       try {
         const value = await AsyncStorage.getItem("isLoggedIn");
-        console.log(value);
-        if (value == true) {
+        console.log(value.toString());
+        if (value == "true") {
           navigation.replace("LoyaltyCardScreen");
         } else {
           navigation.replace("LoginScreen");

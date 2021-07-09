@@ -57,7 +57,8 @@ const HomeScreen = ({ navigation }) => {
       <TouchableOpacity
         style={styles.loginBtn}
         onPress={() => {
-          if (validator.isMobilePhone(phoneNumber)) {
+          let re = new RegExp(/^(07[\d]{8,12})/);
+          if (re.test(phoneNumber)) {
             if (SendPhoneNumber(phoneNumber) == 200) {
               navigation.replace("CodeScreen", { phoneNumber: phoneNumber });
             } else {

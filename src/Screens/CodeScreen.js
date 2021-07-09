@@ -37,6 +37,14 @@ const SendVerification = async (phoneNumber, code) => {
   };
 };
 
+const setData = async (key, data) => {
+  try {
+    await AsyncStorage.setItem(key, data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const CodeScreen = ({ route, navigation }) => {
   const [codeInput, SetCodeInput] = useState("");
   return (
@@ -61,10 +69,10 @@ const CodeScreen = ({ route, navigation }) => {
           const { phoneNumber } = route.params;
           const response = SendVerification(phoneNumber, codeInput);
           if (response.code != 400) {
+            setData("isLoggedIn", "true");
+            setData("token", response.token);
+            setData("phoneNumber", phoneNumber);
             navigation.replace("LoyaltyCardScreen");
-            AsyncStorage.setItem("isLoggedIn", true);
-            AsyncStorage.setItem("token", response.token);
-            AsyncStorage.setItem("phoneNumber", phoneNumber);
           } else {
             Alert.alert(
               "Invalid Auth Code",

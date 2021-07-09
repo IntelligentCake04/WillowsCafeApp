@@ -15,7 +15,12 @@ export default function QRScannerScreen() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`The qr code has type ${type} and data ${data}`);
+    // tell: <phoneNumber>
+    if (data.includes("tell: ") && type === 256) {
+      alert("The qr code has type ${type} and data ${data}");
+    } else {
+      alert("Invalid code!");
+    }
   };
 
   if (hasPermission === null) {
