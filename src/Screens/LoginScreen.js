@@ -10,25 +10,27 @@ import {
 } from "react-native";
 import validator from "validator";
 
-const SendPhoneNumber = async (phoneNumber) => {
-  try {
-    let response = await fetch("google.com", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        phoneNumber: phoneNumber,
-      }),
-    });
-    let json = await response.json();
-    console.log("Response " + json);
-    return json.code;
-  } catch (error) {
-    console.error(error);
-    return 400;
-  }
+const SendPhoneNumber = (phoneNumber) => {
+  // try {
+  //   let response = await fetch("wch.jnet-it.com/login", {
+  //     method: "POST",
+  //     headers: {
+  //       "Accept": "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       phoneNumber: phoneNumber,
+  //     }),
+  //   });
+  //   let res = await response.json();
+  //   console.log("Response " + res);
+  //   return res.code;
+  // } catch (error) {
+  //   console.error(error);
+  //   return 200;
+  // }
+  console.log(phoneNumber);
+  return 200;
 };
 
 const HomeScreen = ({ navigation }) => {

@@ -10,24 +10,30 @@ import {
 } from "react-native";
 
 const SendVerification = async (phoneNumber, code) => {
-  try {
-    let response = await fetch("google.com", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        phoneNumber: phoneNumber,
-        code: code,
-      }),
-    });
-    let json = await response.json();
-    console.log("Response " + json);
-    return json.code;
-  } catch (error) {
-    console.error(error);
-    return 400;
+  // try {
+  //   let response = await fetch("wch.jnet-it.com/verify", {
+  //     method: "POST",
+  //     headers: {
+  //       "Accept": "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       phoneNumber,
+  //       code,
+  //     }),
+  //   });
+  //   let res = await response.json();
+  //   console.log("Response " + res);
+  //   return res.code;
+  // } catch (error) {
+  //   console.error(error);
+  //   return 400;
+  // }
+  console.log(phoneNumber + " " + code);
+  const token = "sometoken";
+  return {
+    code: 200,
+    token,
   }
 };
 
@@ -50,13 +56,16 @@ const CodeScreen = ({ route, navigation }) => {
         style={styles.loginBtn}
         onPress={() => {
           const { phoneNumber } = route.params;
-          if (SendVerification(phoneNumber, codeInput) == 200) {
+          const response = SendVerification(phoneNumber, codeInput);
+          if (response.code != 400) {
             navigation.replace("LoyaltyCardScreen");
             AsyncStorage.setItem("isLoggedIn", true);
+            AsyncStorage.setItem("token", response.token);
+            AsyncStorage.setItem("phoneNumber", phoneNumber);
           } else {
             Alert.alert(
-              "Invalid Phone Number",
-              "Your phone number is not valid, please try again",
+              "Invalid Auth Code",
+              "Your authenticaion code is not valid",
               [
                 {
                   text: "OK",
