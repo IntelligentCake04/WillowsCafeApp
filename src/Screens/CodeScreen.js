@@ -34,7 +34,7 @@ const SendVerification = async (phoneNumber, code) => {
   return {
     code: 200,
     token,
-  }
+  };
 };
 
 const CodeScreen = ({ route, navigation }) => {
@@ -42,7 +42,10 @@ const CodeScreen = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <Image style={styles.logo} source={require("../images/logo.png")} />
+        <Image
+          style={styles.logo}
+          source={require("../images/orange_final_logo.png")}
+        />
       </View>
       <View style={styles.inputView}>
         <TextInput

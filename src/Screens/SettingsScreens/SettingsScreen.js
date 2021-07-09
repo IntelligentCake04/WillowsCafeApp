@@ -6,12 +6,6 @@ import styles from "../../Styles/GlobalStyles";
 export default SettingsScreen = ({ navigation }) => (
   <View style={styles.container}>
     <FlatButton
-      text="My Account"
-      onPress={() =>
-        navigation.navigate("AccountScreen", { name: "Account Screen" })
-      }
-    />
-    <FlatButton
       text="About"
       onPress={() =>
         navigation.navigate("AboutScreen", { name: "About Screen" })
@@ -21,12 +15,6 @@ export default SettingsScreen = ({ navigation }) => (
       text="Policy"
       onPress={() =>
         navigation.navigate("PolicyScreen", { name: "Policy Screen" })
-      }
-    />
-    <FlatButton
-      text="Copyright"
-      onPress={() =>
-        navigation.navigate("CopyrightScreen", { name: "Copyright Screen" })
       }
     />
     <FlatButton
