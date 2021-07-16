@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 
-export default function QRScannerScreen() {
+export default function QRScannerScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -18,6 +18,7 @@ export default function QRScannerScreen() {
     // tell: <phoneNumber>
     if (data.includes("tell: ") && type === 256) {
       alert("The qr code has type ${type} and data ${data}");
+      navigation.navigate("AdminScreen", { qrData: data });
     } else {
       alert("Invalid code!");
     }

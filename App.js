@@ -15,6 +15,7 @@ import QRScannerScreen from "./src/Screens/QRScannerScreen";
 import MenuScreen from "./src/Screens/MenuScreen";
 import QRScreen from "./src/Screens/QRScreen";
 import SplashScreen from "./src/Screens/SplashScreen";
+import AdminScreen from "./src/Screens/AdminScreen";
 
 const Stack = createStackNavigator();
 
@@ -80,6 +81,7 @@ const App = () => {
           component={TermsAndConditionsScreen}
         />
         <Stack.Screen name="QRScannerScreen" component={QRScannerScreen} />
+        <Stack.Screen name="AdminScreen" component={AdminScreen} />
         <Stack.Screen name="QRScreen" component={QRScreen} />
         <Stack.Screen
           name="LoginScreen"
