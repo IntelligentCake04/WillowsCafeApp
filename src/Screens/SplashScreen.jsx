@@ -1,23 +1,26 @@
 import React, { useEffect } from "react";
-import { AsyncStorage, View } from "react-native";
+import { View } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreen = ({ navigation }) => {
   useEffect(() => {
-    const _retrieveData = async () => {
-      try {
-        const value = await AsyncStorage.getItem("isLoggedIn");
-        console.log(value.toString());
-        if (value == "true") {
-          navigation.replace("LoyaltyCardScreen");
+    AsyncStorage.getItem('isAdmin')
+      .then(data => JSON.parse(data))
+      .then(admin => {
+        if (admin) {
+          navigation.replace('QRScannerScreen');
         } else {
-          navigation.replace("LoginScreen");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    _retrieveData();
+          AsyncStorage.getItem('isLoggedIn')
+            .then(loggedIn => {
+              if (loggedIn) {
+                navigation.replace('LoyaltyCardScreen');
+              }
+              else {
+                navigation.replace('LoginScreen');
+              }
+            });
+          }
+    });
   }, []);
 
   return <View></View>;

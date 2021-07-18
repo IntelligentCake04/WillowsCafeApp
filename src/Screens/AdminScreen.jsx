@@ -7,9 +7,11 @@ import {
   TextInput,
   Image,
 } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AdminScreen = ({ route, navigation }) => {
   const [drinks, SetDrinks] = useState(0);
+  const phone = route.params.qrData;
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -30,7 +32,24 @@ const AdminScreen = ({ route, navigation }) => {
       <TouchableOpacity
         style={styles.loginBtn}
         onPress={() => {
-          // Set drinks bought
+
+
+        AsyncStorage.getItem('token')
+          .then(token => JSON.parse(token))
+          .then((token) => {
+            fetch(`https://wch.jnet-it.com/points?token=${token}`,
+              {
+                method: 'PUT',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  phoneNumber: phone,
+                  points: drinks
+                })
+            })
+          });
         }}
       >
         <Text style={styles.loginText}>Set Drinks</Text>

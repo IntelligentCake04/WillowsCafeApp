@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import { View, Text, Alert } from "react-native";
 import FlatButton from "../../Components/FlatButton";
@@ -35,17 +36,13 @@ export default SettingsScreen = ({ navigation }) => (
       text="Logout"
       onPress={() =>
         Alert.alert("Logout", "Do you want to logout?", [
-          { text: "Yes", onPress: () => console.warn("Yes Pressed") },
+          { text: "Yes", onPress: () => {
+            AsyncStorage.removeItem('token');
+            AsyncStorage.setItem('isLoggedIn', JSON.stringify(false));
+            navigation.replace('LoginScreen');
+          } },
           { text: "No", onPress: () => console.warn("No Pressed") },
         ])
-      }
-    />
-    <FlatButton
-      text="Scan QR Code"
-      onPress={() =>
-        navigation.navigate("QRScannerScreen", {
-          name: "QR Scanner Screen",
-        })
       }
     />
   </View>

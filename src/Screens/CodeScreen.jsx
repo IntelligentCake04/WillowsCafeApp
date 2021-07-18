@@ -62,7 +62,11 @@ const CodeScreen = ({ route, navigation }) => {
               AsyncStorage.setItem('token', JSON.stringify(data.token));
               AsyncStorage.setItem('isAdmin', JSON.stringify(data.isAdmin))
               AsyncStorage.setItem('phoneNumber', JSON.stringify(phoneNumber));
-              navigation.replace('LoyaltyCardScreen');
+              if (data.isAdmin) {
+                navigation.replace('QRScannerScreen')
+              } else {
+                navigation.replace('LoyaltyCardScreen');
+              }
             }
           })
           .catch(error => {

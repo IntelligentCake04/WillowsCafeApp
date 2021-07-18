@@ -9,9 +9,9 @@ const QRScreen = () => {
   useEffect(() => {
     const _retrieveData = async () => {
       try {
-        const value = await AsyncStorage.getItem("phoneNumber");
-        console.log(value.toString());
-        setPhoneNumber(value.toString());
+        AsyncStorage.getItem("phoneNumber")
+          .then(value => JSON.parse(value))
+          .then(phone => setPhoneNumber(phone))
       } catch (error) {
         console.log(error);
       }
@@ -21,11 +21,12 @@ const QRScreen = () => {
   }, []);
 
   return (
+    (phoneNumber) ?
     <QRCode
-      value={"tell: " + phoneNumber}
+      value={phoneNumber}
       size={150}
       backgroundColor="#e3e8ce"
-    />
+    /> : null
   );
 };
 
