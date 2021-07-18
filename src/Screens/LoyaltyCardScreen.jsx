@@ -29,7 +29,7 @@ export default function LoyaltyCardScreen({ navigation }) {
           }).then(res => res.json())
           .then(data => setPoints(data.points))    
         });
-    }, 5000);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
   

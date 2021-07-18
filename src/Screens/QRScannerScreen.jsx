@@ -15,7 +15,6 @@ export default function QRScannerScreen({ navigation }) {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`The qr code has data ${data}`);
     navigation.navigate("AdminScreen", { qrData: data });
   };
 

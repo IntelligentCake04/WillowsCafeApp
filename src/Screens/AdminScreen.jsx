@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   Image,
+  Alert
 } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -33,25 +34,31 @@ const AdminScreen = ({ route, navigation }) => {
         style={styles.loginBtn}
         onPress={() => {
 
-
-        AsyncStorage.getItem('token')
-          .then(token => JSON.parse(token))
-          .then((token) => {
-            fetch(`https://wch.jnet-it.com/points?token=${token}`,
-              {
-                method: 'PUT',
-                headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  phoneNumber: phone,
-                  points: drinks
-                })
-            })
-          });
-        }}
-      >
+          AsyncStorage.getItem('token')
+            .then(token => JSON.parse(token))
+            .then((token) => {
+              fetch(`https://wch.jnet-it.com/points?token=${token}`,
+                {
+                  method: 'PUT',
+                  headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    phoneNumber: phone,
+                    points: drinks
+                  })
+              })
+              .then(data => data.json())
+              .then(json => {
+                Alert.alert(`Customer now has ${json.points} points`)
+                if (json.points === 9) {
+                  Alert.alert(`Customer can claim a free drink`)
+                }
+              })
+              .then(() => navigation.navigate('QRScannerScreen'));
+            })}
+        }>
         <Text style={styles.loginText}>Set Drinks</Text>
       </TouchableOpacity>
     </View>
