@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import QRScreen from "../Screens/QRScreen";
+import React, { useState, useEffect } from "react";
+import QRScreen from "./QRScreen";
 import {
   StyleSheet,
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // TODO: get this working!
 // const GetPoints = async () => {
@@ -32,20 +33,30 @@ import {
 //   }
 // };
 
+
 export default function LoyaltyCardScreen({ navigation }) {
-  const [drink, setDrink] = useState([
-    { name: "  1  ", id: 1 },
-    { name: "  2  ", id: 2 },
-    { name: "  3  ", id: 3 },
-    { name: "  4  ", id: 4 },
-    { name: "  5  ", id: 5 },
-    { name: "  6  ", id: 6 },
-    { name: "  7  ", id: 7 },
-    { name: "  8  ", id: 8 },
-    { name: "  9  ", id: 9 },
-    { name: " 10 ", id: 10 },
-    { name: "free", id: 11 },
-  ]);
+  const [points, setPoints] = useState(0);
+  const labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      AsyncStorage.getItem('token')
+        .then(token => JSON.parse(token))
+        .then((token) => {
+          fetch(`https://wch.jnet-it.com/points?token=${token}`,
+            {
+              method: 'GET',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+          }).then(res => res.json())
+          .then(data => setPoints(data.points))    
+        });
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+  
 
   return (
     <View style={styles.loyaltytext}>
@@ -55,11 +66,11 @@ export default function LoyaltyCardScreen({ navigation }) {
       <View style={styles.SquareShapeView}>
         <FlatList
           numColumns={3}
-          keyExtractor={(item) => item.id}
-          data={drink}
+          keyExtractor={(item) => item}
+          data={labels}
           renderItem={({ item }) => (
-            <TouchableOpacity>
-              <Text style={styles.item}>{item.name}</Text>
+            <TouchableOpacity style={{align: "center"}}>
+              <Text style={(points >= item) ? styles.item : styles.disabledItem}>{String(item)}</Text>
             </TouchableOpacity>
           )}
         />
@@ -103,6 +114,7 @@ const styles = StyleSheet.create({
   },
   item: {
     flex: 1,
+    textAlign: "center",
     marginHorizontal: 3,
     marginTop: 3,
     padding: 30,
@@ -111,6 +123,19 @@ const styles = StyleSheet.create({
     fontWeight: "100",
     borderWidth: 3,
     borderColor: "#A14F0B",
+    borderRadius: 10,
+  },
+  disabledItem: {
+    flex: 1,
+    textAlign: "center",
+    marginHorizontal: 3,
+    marginTop: 3,
+    padding: 30,
+    backgroundColor: "#726e6a",
+    fontSize: 16,
+    fontWeight: "100",
+    borderWidth: 3,
+    borderColor: "#937b67",
     borderRadius: 10,
   },
 });
