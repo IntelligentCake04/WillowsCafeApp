@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, Image, AsyncStorage } from "react-native";
+import { Text, View, Image } from "react-native";
 import GlobalStyles from "../Styles/GlobalStyles";
 import QRCode from "react-native-qrcode-svg";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const QRScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
