@@ -19,7 +19,6 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <View style={styles.inputView}>
         <TextInput
-          keyboardType="phone-pad"
           style={styles.inputText}
           placeholder="Phone Number..."
           placeholderTextColor="white"

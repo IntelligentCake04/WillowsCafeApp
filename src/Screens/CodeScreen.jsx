@@ -20,7 +20,6 @@ const CodeScreen = ({ route, navigation }) => {
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
-          keyboardType="phone-pad"
           placeholder="Code..."
           placeholderTextColor="white"
           onChangeText={(val) => setCode(String(val))}
