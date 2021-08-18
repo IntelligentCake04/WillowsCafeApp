@@ -18,7 +18,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.arjunmodi.willowsloyaltyapp"
+      "bundleIdentifier": "com.arjunmodi.willowsloyaltyapp",
+      "buildNumber": "3"
     },
     "android": {
       "adaptiveIcon": {

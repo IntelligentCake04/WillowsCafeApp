@@ -14,13 +14,11 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: "#CC5500",
-    backgroundColor: "#23282A",
   },
   text2: {
     marginLeft: 7,
     color: "#CC5500",
     alignItems: "flex-end",
-    backgroundColor: "#A0A0A0A0",
   },
   button1: {
     margin: 50,

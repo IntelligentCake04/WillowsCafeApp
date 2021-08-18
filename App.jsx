@@ -71,14 +71,15 @@ const App = () => {
             ),
           })}
         />
-        <Stack.Screen name="MenuScreen" component={MenuScreen} />
-        <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
-        <Stack.Screen name="AboutScreen" component={AboutScreen} />
-        <Stack.Screen name="ContactScreen" component={ContactScreen} />
-        <Stack.Screen name="PolicyScreen" component={PolicyScreen} />
+        <Stack.Screen name="MenuScreen" component={MenuScreen}  options={{ title: "Website"}}/>
+        <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{ title: "Settings"}}/>
+        <Stack.Screen name="AboutScreen" component={AboutScreen} options={{ title: "About"}}/>
+        <Stack.Screen name="ContactScreen" component={ContactScreen} options={{ title: "Contact"}}/>
+        <Stack.Screen name="PolicyScreen" component={PolicyScreen} options={{ title: "Policy"}}/>
         <Stack.Screen
           name="TermsAndConditionsScreen"
           component={TermsAndConditionsScreen}
+          options={{ title: "T&Cs"}}
         />
         <Stack.Screen name="QRScannerScreen" component={QRScannerScreen}
           options={({ navigation }) => ({
@@ -102,9 +103,9 @@ const App = () => {
               </View>
             )})}
         />
-        <Stack.Screen name="AdminScreen" component={AdminScreen}
+        <Stack.Screen name="AdminScreen" component={AdminScreen} options={{ headerShown: false }}
         />
-        <Stack.Screen name="QRScreen" component={QRScreen} />
+        <Stack.Screen name="QRScreen" component={QRScreen} options={{ headerShown: false }}/>
         <Stack.Screen
           name="LoginScreen"
           component={LoginScreen}
