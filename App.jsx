@@ -16,6 +16,7 @@ import MenuScreen from "./src/Screens/MenuScreen";
 import QRScreen from "./src/Screens/QRScreen";
 import SplashScreen from "./src/Screens/SplashScreen";
 import AdminScreen from "./src/Screens/AdminScreen";
+import CupScreen from "./src/Screens/CupScreen";
 
 const Stack = createStackNavigator();
 
@@ -55,7 +56,7 @@ const App = () => {
                   name="cafe"
                   size={30}
                   color="#212322"
-                  onPress={() => navigation.navigate("MenuScreen")}
+                  onPress={() => navigation.navigate("CupScreen")}
                 />
               </View>
             ),
@@ -71,7 +72,8 @@ const App = () => {
             ),
           })}
         />
-        <Stack.Screen name="MenuScreen" component={MenuScreen}  options={{ title: "Website"}}/>
+        <Stack.Screen name="CupScreen" component={CupScreen} options={{ title: "Willows"}}/>
+        <Stack.Screen name="MenuScreen" component={MenuScreen}  options={{ title: "Menu"}}/>
         <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{ title: "Settings"}}/>
         <Stack.Screen name="AboutScreen" component={AboutScreen} options={{ title: "About"}}/>
         <Stack.Screen name="ContactScreen" component={ContactScreen} options={{ title: "Contact"}}/>

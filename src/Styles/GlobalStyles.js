@@ -31,7 +31,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#23282A",
-    alignItems: "center",
     justifyContent: "center",
   },
 });

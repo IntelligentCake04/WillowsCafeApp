@@ -1,6 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { WebView } from "react-native-webview";
 
-export default MenuScreen = () => {
-  return <WebView source={{ uri: "https://www.willowscoffeehouse.com/" }} />;
+const MenuScreen = () => {
+  return <WebView source={{ uri: "https://www.willowscoffeehouse.com/#bgLayers_comp-kkijmeqt4" }} />;
 };
+
+export default MenuScreen;
